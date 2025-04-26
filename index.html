@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WonderWorld + LGM Integration</title>
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <link rel="icon" href="./static/images/favicon.svg">
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <style>
+        body { font-family: 'Times New Roman', serif; }
+        .hero { background: url('./static/images/hero_image.png') no-repeat center center; background-size: cover; color: white; text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5); padding: 3rem 1.5rem; border-radius: 10px; }
+        .catbread { background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 10px; }
+        .hero-body { background: linear-gradient(to right, #f8f9fa, #e0eafc); color: #333; padding: 3rem 1.5rem; border-radius: 10px; }
+        .title.is-2 { font-size: 1.5rem; }
+        .title.is-3 { font-size: 2rem; font-weight: bold; }
+        .content p { font-size: 1rem; }
+        .result-image { border-radius: 10px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); }
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; justify-items: center; }
+        .grid-item { text-align: center; }
+        .grid-item img { width: 100%; max-width: 180px; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+        .grid-item p { margin-top: 10px; font-size: 14px; color: #555; }
+    </style>
+</head>
+<body>
+
+<!-- 1. Overview -->
+<section class="hero">
+    <div class="catbread has-text-centered">
+        <div class="container is-max-desktop">
+            <h1 class="title is-2">WonderWorld + LGM Integration</h1>
+            <h2 class="title is-3">A New Frontier in 3D Scene Generation</h2>
+            <p class="is-size-5"><strong>One-line Summary:</strong> Enhancing WonderWorld with multi-view reasoning and Gaussian modeling for better 3D scenes.</p>
+        </div>
+    </div>
+</section>
+
+<!-- 2. Motivation -->
+<section class="section">
+    <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">Motivation</h2>
+        <hr>
+        <p class="content has-text-justified">
+          While WonderWorld generates interactive 3D scenes from single images, it struggles with generating complete object backsides and accurate multi-view consistency. Integrating LGM and Gaussian representations addresses these gaps, offering higher fidelity and richer reconstructions.
+        </p>
+    </div>
+</section>
+
+<!-- 3. Method -->
+<section class="section">
+    <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">Method</h2>
+        <hr>
+        <p class="content has-text-justified">
+          Our pipeline consists of multiple stages: starting from a single input image, we estimate depth, generate layered views via FLAGS, reconstruct objects through ImageDream, and represent the 3D scene using a 4D Gaussian model for real-time novel view synthesis.
+        </p>
+        <div class="grid-container">
+            <div class="grid-item">
+                <img src="./static/images/pipeline.png" alt="Methodology Diagram">
+                <p>Methodology Overview</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 4. Experiments & Results -->
+<section class="section">
+    <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">Experiments & Results</h2>
+        <hr>
+        <p class="content has-text-justified">
+          We compare outputs between the original WonderWorld and our enhanced method. Noticeable improvements appear in backside object generation, scene realism, and multi-view consistency.
+        </p>
+        <div class="grid-container">
+            <div class="grid-item">
+                <img src="./static/images/results/original.png" alt="Original">
+                <p>WonderWorld Original</p>
+            </div>
+            <div class="grid-item">
+                <img src="./static/images/results/enhanced.png" alt="Enhanced">
+                <p>Our Enhanced Method</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 5. Ablations -->
+<section class="section">
+    <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">Ablations</h2>
+        <hr>
+        <p class="content has-text-justified">
+          To validate each component's contribution, we ablated the use of LGM and Gaussian splatting separately.
+        </p>
+        <div class="grid-container">
+            <div class="grid-item">
+                <img src="./static/images/ablations/without_lgm.png" alt="Without LGM">
+                <p>Without LGM</p>
+            </div>
+            <div class="grid-item">
+                <img src="./static/images/ablations/without_gaussian.png" alt="Without Gaussian">
+                <p>Without Gaussian</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 6. Downloads / Code -->
+<section class="section">
+    <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">Downloads / Code</h2>
+        <hr>
+        <p class="content has-text-justified">
+          <a href="https://github.com/yourrepo">View GitHub Repository</a>
+          <br>
+          Main script: <code>run_pipeline.py</code>
+        </p>
+    </div>
+</section>
+
+<!-- 7. References -->
+<section class="section">
+    <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">References</h2>
+        <hr>
+        <p class="content has-text-justified">
+          • WonderWorld: Interactive 3D Scene Synthesis from a Single Image<br>
+          • FLAGS: Layered View Generation<br>
+          • LGM: Layered Gaussian Models<br>
+          • ImageDream: Single-image 3D Reconstruction
+        </p>
+    </div>
+</section>
+
+<!-- 8. Team -->
+<section class="section">
+    <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">Team</h2>
+        <hr>
+        <p class="content has-text-justified">
+          <strong>Team member</strong> - Role<br>
+          Fun fact: Cat lover and 3D scene generation enthusiast 🐾
+        </p>
+    </div>
+</section>
+
+<footer class="footer has-text-centered">
+    <p>Website adapted from <a href="https://mingukkang.github.io/Diffusion2GAN/">Diffusion2GAN</a></p>
+</footer>
+
+</body>
+</html>
