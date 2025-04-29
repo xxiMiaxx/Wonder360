@@ -48,20 +48,74 @@
 </section>
 
 <!-- 3. Method -->
+<!-- 3. Method -->
 <section class="section">
-    <div class="container is-max-desktop">
-        <h2 class="title is-3 has-text-centered">Method</h2>
-        <hr>
-        <p class="content has-text-justified">
-          Our pipeline consists of multiple stages: starting from a single input image, we estimate depth, generate layered views via FLAGS, reconstruct objects through ImageDream, and represent the 3D scene using a 4D Gaussian model for real-time novel view synthesis.
-        </p>
-        <div class="grid-container">
-            <div class="grid-item">
-                <img src="./static/images/pipeline.png" alt="Methodology Diagram">
-                <p>Methodology Overview</p>
-            </div>
+  <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Method</h2>
+      <hr>
+      <p class="content has-text-justified">
+        Our pipeline consists of two main stages: starting from a single input image, we first generate an initial 3D scene via FLAGS optimization. 
+        Next, we reconstruct foreground objects using ImageDream and represent them with a large multi-view Gaussian model, enabling high quality 360° novel view synthesis.
+      </p>
+
+      <!-- <div class="grid-container">
+          <div class="grid-item">
+              <img src="./static/images/approach.jpg" alt="WonderWorld Methodology">
+              <p class="has-text-centered">Initial WonderWorld Scene Generation Pipeline</p>
+          </div>
+      </div> -->
+      <div class="box" style="padding: 1rem; background: none;">
+        <figure class="image is-3by1">
+          <img src="./static/images/approach.jpg" alt="Initial Scene Generation Pipeline">
+        </figure>
+        <figcaption class="has-text-centered mt-2">Initial WonderWorld Scene Generation Pipeline</figcaption>
+      </div>
+
+      <h3 class="title is-4 mt-6">Stage 1: Initial 3D Scene Generation</h3>
+      <p class="content has-text-justified">
+        We begin by estimating a ground depth map from the input image, which is refined via guided depth diffusion to produce a smooth depth estimate.
+        Using this depth, we generate multiple fronto-parallel image layers corresponding to different depth slices. 
+        These layers are optimized into a lightweight 3D representation using the FLAGS method, producing an initial interactive scene capable of handling small user viewpoint changes.
+      </p>
+
+      <div class="grid-container">
+          <div class="grid-item">
+              <img src="./static/images/00_image_init.png" alt="Input Image">
+              <p class="has-text-centered">Input Image</p>
+          </div>
+          <div class="grid-item">
+            <img src="./static/images/00_inpaint_mask.png" alt="Input Image">
+            <p class="has-text-centered">Forground Layer</p>
         </div>
+        <div class="grid-item">
+          <img src="./static/images/00_mask_disocclusion.png" alt="Input Image">
+          <p class="has-text-centered">Background Layer</p>
+      </div>
+      <div class="grid-item">
+        <img src="./static/images/00_remove_disocclusion.png" alt="Input Image">
+        <p class="has-text-centered">Inpainted Background Layer</p>
     </div>
+      </div>
+
+      <h3 class="title is-4 mt-6">Stage 2: Foreground Object Completion</h3>
+      <p class="content has-text-justified">
+        Due to the 2D nature of FLAGS primitives, foreground objects appear incomplete from non-frontal views, as shown in the previous motivation section.
+        To overcome this, we identify key foreground elements, generate novel views with ImageDream, and reconstruct full 3D geometry using a large multi-view Gaussian model.
+        This process enhances scene fidelity, allowing for robust exploration from any viewpoint.
+      </p>
+
+      <div class="grid-container">
+          <div class="grid-item">
+              <img src="./static/images/proposed_pipeline.png" alt="Proposed Methodology with LGM">
+              <p class="has-text-centered">Foreground Object Reconstruction Pipeline</p>
+          </div>
+      </div>
+
+      <p class="content has-text-justified">
+        Multi-view generation takes approximately 4 seconds, and Gaussian reconstruction takes an additional second, enabling efficient and scalable 3D scene completion.
+        The final output seamlessly integrates completed objects back into the initial FLAGS scene, supporting real-time novel view synthesis with enhanced realism.
+      </p>
+  </div>
 </section>
 
 <!-- 4. Experiments & Results -->
