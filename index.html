@@ -100,20 +100,34 @@
       <h3 class="title is-4 mt-6">Stage 2: Foreground Object Completion</h3>
       <p class="content has-text-justified">
         Due to the 2D nature of FLAGS primitives, foreground objects appear incomplete from non-frontal views, as shown in the previous motivation section.
-        To overcome this, we identify key foreground elements, generate novel views with ImageDream, and reconstruct full 3D geometry using a large multi-view Gaussian model.
-        This process enhances scene fidelity, allowing for robust exploration from any viewpoint.
+        To overcome this, we identify key foreground elements, generate novel multiple views per object with ImageDream, then we reconstruct the full 3D geometry using a large multi-view Gaussian model (LGM).
+        This process is shown below:
       </p>
-
-      <div class="grid-container">
-          <div class="grid-item">
-              <img src="./static/images/proposed_pipeline.png" alt="Proposed Methodology with LGM">
-              <p class="has-text-centered">Foreground Object Reconstruction Pipeline</p>
-          </div>
+      
+      <!-- Two images on the same row -->
+      <div class="columns is-vcentered mt-5">
+        
+        <!-- Left column: Pipeline (larger) -->
+        <div class="column is-two-thirds">
+          <figure class="image">
+            <img src="./static/images/lgm300.jpg" alt="Foreground Object Reconstruction Pipeline" style="width: 100%; height: auto;">
+            <figcaption class="has-text-centered mt-2">Foreground Object Reconstruction Pipeline</figcaption>
+          </figure>
+        </div>
+      
+        <!-- Right column: Rotating 3D Object (smaller) -->
+        <div class="column">
+          <figure class="image">
+            <img src="./static/images/3d_object.gif" alt="Rotating 3D Object" style="width: 100%; height: auto;">
+            <figcaption class="has-text-centered mt-2">Final Reconstructed 3D Object</figcaption>
+          </figure>
+        </div>
+      
       </div>
-
-      <p class="content has-text-justified">
+      
+      <p class="content has-text-justified mt-5">
         Multi-view generation takes approximately 4 seconds, and Gaussian reconstruction takes an additional second, enabling efficient and scalable 3D scene completion.
-        The final output seamlessly integrates completed objects back into the initial FLAGS scene, supporting real-time novel view synthesis with enhanced realism.
+        After this step we can now integrate completed objects back into the initial FLAGS scene.
       </p>
   </div>
 </section>
