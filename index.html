@@ -37,14 +37,49 @@
 </section>
 
 <!-- 2. Motivation -->
+<!-- 2. Motivation -->
 <section class="section">
     <div class="container is-max-desktop">
         <h2 class="title is-3 has-text-centered">Motivation</h2>
         <hr>
         <p class="content has-text-justified">
-          While WonderWorld generates interactive 3D scenes from single images, it struggles with generating complete object backsides and accurate multi-view consistency. Integrating LGM and Gaussian representations addresses these gaps, offering higher fidelity and richer reconstructions.
+          WonderWorld is capable of generating an interactive 3D scene from a single photograph, but its reliance on a layered-surfel representation inherently limits it to front-facing geometry. As a consequence, objects appear hollow when viewed from other angles, preventing users from exploring behind them and undermining the illusion of a cohesive environment. Hidden surfaces, when revealed, often materialize abruptly or manifest as floating fragments, breaking visual continuity and producing distracting artifacts. Additionally, because there is no built-in mechanism to fill or correct missing back-side geometry, users must recapture images to patch these gaps. To address these shortcomings, Wonder360 employs a feed-forward large geometry model (LGM) that reconstructs complete object shapes and augments them with full 3D Gaussian surfels. This combined strategy not only restores closed back-faces and enforces smooth, artifact-free transitions across viewpoints but also supports interactive refinement—all while preserving real-time performance.
         </p>
     </div>
+
+    <section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-desktop">
+
+      <div class="column">
+        <figure class="has-text-centered">
+          <div class="image is-4by3">
+            <img src="./static/images/front view.png" alt="Front view" class="result-image">
+          </div>
+          <figcaption class="mt-2">Front view</figcaption>
+        </figure>
+      </div>
+
+      <div class="column">
+        <figure class="has-text-centered">
+          <div class="image is-4by3">
+            <img src="./static/images/Oblique view.png" alt="Oblique view" class="result-image">
+          </div>
+          <figcaption class="mt-2">Oblique view</figcaption>
+        </figure>
+      </div>
+
+      <div class="column">
+        <figure class="has-text-centered">
+          <div class="image is-4by3">
+            <img src="./static/images/side view.png" alt="Side view" class="result-image">
+          </div>
+          <figcaption class="mt-2">Side view</figcaption>
+        </figure>
+      </div>
+
+    </div>
+  </div>
 </section>
 
 <!-- 3. Method -->
