@@ -1,0 +1,33 @@
+runs_dir: output/indoor_livingroom
+example_name: indoor_livingroom
+
+seed: 2
+# Enable guided depth diffusion for better interior results
+depth_conditioning: True
+
+# Use GPT to generate scene description
+use_gpt: True
+debug: True
+
+# Depth model and camera/depth parameters optimized for indoor scene
+depth_model: marigold
+# Pure rotation with no translation
+camera_speed: 0.0008
+# Reduced depth range for interior spaces
+fg_depth_range: 0.008
+depth_shift: 0.0005
+# Adjusted for indoor scene without sky
+sky_hard_depth: 0.01
+# Higher focal length for interior spaces
+init_focal_length: 800
+
+# Disable sky generation for indoor scene
+gen_sky_image: False
+gen_sky: False
+
+# Enable layer-wise generation for more accurate room parts 
+gen_layer: True
+# Set to True if you want to load previously generated gaussians
+load_gen: False
+
+outdoor: False

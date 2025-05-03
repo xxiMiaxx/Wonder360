@@ -1,0 +1,6 @@
+# ninja log v5
+0	3726	1744584495488607195	/home/tanisha/vqa_nms/WonderWorld/submodules/depth-diff-gaussian-rasterization-min/build/temp.linux-x86_64-cpython-310/cuda_rasterizer/forward.o	7a68a4fd7234193c
+0	3768	1744584495531606909	/home/tanisha/vqa_nms/WonderWorld/submodules/depth-diff-gaussian-rasterization-min/build/temp.linux-x86_64-cpython-310/cuda_rasterizer/backward.o	5910c9eb5d9e3117
+1	10299	1744584502054563710	/home/tanisha/vqa_nms/WonderWorld/submodules/depth-diff-gaussian-rasterization-min/build/temp.linux-x86_64-cpython-310/cuda_rasterizer/rasterizer_impl.o	b52e2937953bf2c6
+1	16047	1744584507685526565	/home/tanisha/vqa_nms/WonderWorld/submodules/depth-diff-gaussian-rasterization-min/build/temp.linux-x86_64-cpython-310/ext.o	cda2b13a433c41e5
+1	44593	1744584536320339723	/home/tanisha/vqa_nms/WonderWorld/submodules/depth-diff-gaussian-rasterization-min/build/temp.linux-x86_64-cpython-310/rasterize_points.o	be6a4981388d28e3

@@ -1,0 +1,4 @@
+# ninja log v5
+0	10239	1744584247546410715	/home/tanisha/vqa_nms/WonderWorld/submodules/simple-knn/build/temp.linux-x86_64-cpython-310/simple_knn.o	628fb2d3d4ee0d97
+0	15100	1744584252314372544	/home/tanisha/vqa_nms/WonderWorld/submodules/simple-knn/build/temp.linux-x86_64-cpython-310/ext.o	8f6e4631354b6668
+1	38774	1744584276043184911	/home/tanisha/vqa_nms/WonderWorld/submodules/simple-knn/build/temp.linux-x86_64-cpython-310/spatial.o	31c7ea5aac07a27e
