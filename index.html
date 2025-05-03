@@ -11,7 +11,7 @@
     <style>
         body { font-family: 'Times New Roman', serif; }
         .hero { background: url('./static/images/wonder360_banner.png') no-repeat center center; background-size: cover; color: white; text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5); padding: 3rem 1.5rem; border-radius: 10px; }
-        .catbread { background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 10px; }
+        .catbread { background: rgba(255, 255, 255, 0.9); padding: 2rem; border-radius: 10px; }
         .hero-body { background: linear-gradient(to right, #f8f9fa, #e0eafc); color: #333; padding: 3rem 1.5rem; border-radius: 10px; }
         .title.is-2 { font-size: 1.5rem; }
         .title.is-3 { font-size: 2rem; font-weight: bold; }
@@ -30,12 +30,128 @@
     <div class="catbread has-text-centered">
         <div class="container is-max-desktop">
             <!-- <h1 class="title is-2">Wonder360: Enhanced Interactive 3D Scene Generation</h1> -->
-            <h2 class="title is-3">Wonder360: Enhanced Interactive 3D Scene Generation</h2>
-            <p class="is-size-5"><strong>One-line Summary:</strong> Enhancing WonderWorld with multi-view reasoning and Gaussian modeling for better 3D scenes.</p>
+            <h1 class="title is-3">Wonder360: Enhanced Interactive 3D Scene Generation</h1>
+            <p class="is-size-5"><strong>16-726 Learning-Based Image Synthesis Spring 2025 - Final Project</strong></p>
+
+            <p class="is-size-5"><strong>By: Tanisha Gupta (tanishag), Lamia Alsalloom (lalsallo), Saba Abdulaziz (sabdulaz)</strong></p>
         </div>
     </div>
 </section>
 
+<section class="section">
+  <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Project Overview</h2>
+      <hr>
+      <h3 class="title is-4 mt-6">Background</h3>
+      <p class="content has-text-justified">
+        Our project builds on recent advancements in interactive 3D scene reconstruction from a single image. By leveraging foundational components like FLAGS and ImageDream, we aim to generate realistic, explorable environments enhanced through layered Gaussian representations.
+      </p>
+
+      <h3 class="title is-4 mt-6">Gaussian Splatting</h3>
+      <p class="content has-text-justified">
+        Gaussian splatting is a recent technique in neural scene representation that models a 3D scene using a set of anisotropic 3D Gaussians, each defined by its position, orientation, scale, color, and opacity.
+        These Gaussians are rendered directly onto the image plane using a differentiable splatting process, which blends them smoothly without relying on traditional mesh-based geometry.
+      </p>
+      <p class="content has-text-justified">
+        This approach enables highly efficient and photo-realistic rendering, particularly well-suited for real-time applications due to its fast rendering pipeline and compact representation.
+        It was introduced by Kerbl et al. (2023) in their work on 
+        <a href="https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/" target="_blank">
+          3D Gaussian Splatting for Real-Time Radiance Field Rendering
+        </a>, where they demonstrated significant performance improvements over NeRF-based models.
+      </p>
+
+
+      <h3 class="title is-4 mt-6">Depth Diffusion</h3>
+      <p class="content has-text-justified">
+        Depth diffusion, as proposed in 
+        <a href="https://arxiv.org/abs/2308.04309" target="_blank">Marigold</a> (Zhou et al., 2023), 
+        is a generative approach for estimating high quality depth maps from multi-view images using diffusion models.
+        Unlike traditional deterministic methods, Marigold formulates depth estimation as a denoising process, where a diffusion model is trained to iteratively refine a noisy depth initialization into a coherent, scene-consistent depth map.
+      </p>
+      <p class="content has-text-justified">
+        The model leverages both epipolar geometry and view consistency constraints to guide the diffusion process, enabling it to produce accurate depth maps even in regions with occlusions or sparse texture.
+        This approach demonstrates strong generalization and robustness across a variety of real world datasets, positioning diffusion based depth estimation as a promising direction in 3D vision research.
+      </p>
+
+      <h3 class="title is-4 mt-6">Image Inpainting</h3>
+      <p class="content has-text-justified">
+        Image inpainting and outpainting are techniques in image synthesis used to reconstruct missing or extend existing parts of an image.
+        Inpainting involves filling in missing or corrupted regions within an image by generating plausible content that is consistent with the surrounding context.
+        Outpainting, on the other hand, extends the boundaries of an image beyond its original dimensions while maintaining visual coherence with the existing content.
+        Both tasks rely heavily on deep generative models such as convolutional neural networks (CNNs), generative adversarial networks (GANs), and more recently, diffusion models.
+        Notable works like 
+        <a href="https://github.com/advimman/lama" target="_blank">LaMa</a> (Suvorov et al., 2022) 
+        introduced large receptive field networks for high-quality inpainting, while 
+        <a href="https://github.com/CompVis/stable-diffusion" target="_blank">Stable Diffusion</a> (Rombach et al., 2022) 
+        demonstrated powerful capabilities in both inpainting and outpainting using latent diffusion models.
+        These approaches have enabled realistic and semantically consistent image completions across a wide range of applications.
+      </p>
+  
+      </div>
+
+  </section>
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Related Works</h2>
+      <hr>
+  
+      <h3 class="title is-4 mt-6">3D World Generation</h3>
+      <p class="content has-text-justified">
+        Prior work on 3D scene and world generation has explored both view synthesis and large-scale scene construction.
+        Early methods like <a href="https://www.microsoft.com/en-us/research/publication/high-quality-video-view-interpolation-using-a-layered-representation/" target="_blank">Layered Depth Images</a> [Zitnick et al., 2004] and 
+        <a href="https://augmentedperception.github.io/deepview/" target="_blank">Multi-Plane Images (MPIs)</a> [Zhou et al., 2018; Tucker & Snavely, 2020] enabled novel view synthesis from a single image, but were limited to small viewpoint changes.
+        Neural radiance fields (<a href="https://arxiv.org/abs/2003.08934" target="_blank">NeRFs</a>) [Mildenhall et al., 2020] and 
+        <a href="https://arxiv.org/abs/1906.08240" target="_blank">point-based features</a> [Aliev et al., 2020] improved photorealism but still assumed static scene representations.
+      </p>
+      <p class="content has-text-justified">
+        More recent approaches like 
+        <a href="https://infinite-nature.github.io/" target="_blank">Infinite Nature</a> [Lin et al., 2021] and its variants extended this to perpetual scene generation, while models such as 
+        <a href="https://arxiv.org/html/2401.17053v2" target="_blank">BlockFusion</a> [Zhao et al., 2023],
+        <a href="https://scenescape.github.io/" target="_blank">SceneScape</a> [Yang et al., 2023], and
+        <a href="https://kovenyu.com/wonderjourney/" target="_blank">WonderJourney</a> [Chen et al., 2024] introduced generative diffusion pipelines for terrain, prompt-driven, and LLM-guided scene creation.
+        However, many of these are offline and require significant compute time per scene.
+      </p>
+  
+      <p class="content has-text-justified">
+        Parallel work has focused on localized 3D scene generation, often in indoor environments. 
+        Methods such as 
+        <a href="https://eckertzhang.github.io/Text2NeRF.github.io/" target="_blank">Text2NeRF</a> [Liu et al., 2023], 
+        <a href="https://luciddreamer-cvlab.github.io/" target="_blank">LucidDreamer</a> [Yang et al., 2023], and 
+        <a href="https://realmdreamer.github.io/" target="_blank">RealmDreamer</a> [Xie et al., 2023] generate multi-view images or distill 3D geometry from them.
+        While these approaches improve scene fidelity, they generate static outputs and lack interactivity.
+      </p>
+  
+      <p class="content has-text-justified">
+        In contrast, our work targets interactive 3D scene generation, supporting fast, user driven exploration of multiple, connected scenes in real time.
+      </p>
+  
+      <h3 class="title is-4 mt-6">WonderWorld</h3>
+      <p class="content has-text-justified">
+        Many prior 3D scene generation methods suffer from slow processing times due to their reliance on progressive dense view synthesis and computationally intensive geometry optimization.
+        Approaches such as Text2NeRF, DreamFusion, RealmDreamer, and LucidDreamer typically require generating multiple dense views before constructing a 3D scene, which significantly increases runtime.
+      </p>
+      <p class="content has-text-justified">
+        Additionally, methods that optimize complex scene representations, such as neural radiance fields (NeRF), meshes, or 3D Gaussian Splatting (3DGS), introduce further computational overhead, making them impractical for interactive applications where scenes must be generated in seconds.
+      </p>
+      <p class="content has-text-justified">
+        In contrast, <a href="https://kovenyu.com/wonderworld/" target="_blank">WonderWorld</a> introduces a highly efficient pipeline for interactive 3D scene generation using Fast LAyered Gaussian Surfels 
+        FLAGS,
+        Their method avoids costly dense view generation by directly constructing geometric layers from a single input image and inpainting occluded content at the layer level.
+      </p>
+      <p class="content has-text-justified">
+        Moreover, their representation is designed for rapid optimization and geometry based initialization allows each layer to converge in under one second.
+        This design enables WonderWorld to generate complete, renderable 3D scenes in under 10 seconds with real-time rendering capabilities, even on a single GPU.
+      </p>
+      <h3 class="title is-4 mt-6">LGM</h3>
+      <p class="content has-text-justified">
+        <a href="https://github.com/3DTopia/LGM" target="_blank">LGM</a> is a recent framework for 3D object reconstruction that leverages multi-view diffusion images to optimize a dense Gaussian representation of geometry, color, and opacity.
+        Unlike mesh-based methods, LGM builds high fidelity 3D objects using a unified, differentiable pipeline that supports photorealistic rendering from novel viewpoints.
+        Its efficient convergence and compatibility with image-conditioned generation make it ideal for enhancing foreground object realism in interactive 3D scenes.
+      </p>
+    </div>
+  </section>
 <!-- 2. Motivation -->
 <!-- 2. Motivation -->
 <section class="section">
@@ -43,11 +159,17 @@
         <h2 class="title is-3 has-text-centered">Motivation</h2>
         <hr>
         <p class="content has-text-justified">
-          WonderWorld is capable of generating an interactive 3D scene from a single photograph, but its reliance on a layered-surfel representation inherently limits it to front-facing geometry. As a consequence, objects appear hollow when viewed from other angles, preventing users from exploring behind them and undermining the illusion of a cohesive environment. Hidden surfaces, when revealed, often materialize abruptly or manifest as floating fragments, breaking visual continuity and producing distracting artifacts. Additionally, because there is no built-in mechanism to fill or correct missing back-side geometry, users must recapture images to patch these gaps. To address these shortcomings, Wonder360 employs a feed-forward large geometry model (LGM) that reconstructs complete object shapes and augments them with full 3D Gaussian surfels. This combined strategy not only restores closed back-faces and enforces smooth, artifact-free transitions across viewpoints but also supports interactive refinement—all while preserving real-time performance.
+          WonderWorld is capable of generating an interactive 3D scene from a single photograph, but its reliance on a layered-surfel representation inherently limits it to front-facing geometry.
+          As a consequence, objects appear hollow when viewed from other angles, preventing users from exploring behind them and undermining the illusion of a cohesive environment.
+          Hidden surfaces, when revealed, often materialize abruptly or manifest as floating fragments, breaking visual continuity and producing distracting artifacts.
+          Additionally, because there is no built-in mechanism to fill or correct missing back-side geometry, users must recapture images to patch these gaps.
+          To address these shortcomings, Wonder360 employs a feed-forward large geometry model 
+          (<a href="https://github.com/3DTopia/LGM" target="_blank">LGM</a>) that reconstructs complete object shapes and augments them with full 3D Gaussian surfels.
+          This combined strategy not only restores closed back-faces and enforces smooth, artifact-free transitions across viewpoints but also supports interactive refinement all while preserving real-time performance.
         </p>
     </div>
 
-    <section class="section">
+  <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-desktop">
 
@@ -81,12 +203,13 @@
     </div>
   </div>
 </section>
+</section>
 
 <!-- 3. Method -->
 <!-- 3. Method -->
 <section class="section">
   <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">Method</h2>
+      <h2 class="title is-3 has-text-centered">Methodology</h2>
       <hr>
       <p class="content has-text-justified">
         Our pipeline consists of two main stages: starting from a single input image, we first generate an initial 3D scene via FLAGS optimization. 
@@ -167,92 +290,79 @@
   </div>
 </section>
 
-<!-- 4. Experiments & Results -->
+<!-- 4. Results -->
 <section class="section">
-    <div class="container is-max-desktop">
-        <h2 class="title is-3 has-text-centered">Experiments & Results</h2>
-        <hr>
-        <p class="content has-text-justified">
-          We compare outputs between the original WonderWorld and our enhanced method. Noticeable improvements appear in backside object generation, scene realism, and multi-view consistency.
-        </p>
-        <div class="grid-container">
-            <div class="grid-item">
-                <img src="./static/images/results/original.png" alt="Original">
-                <p>WonderWorld Original</p>
-            </div>
-            <div class="grid-item">
-                <img src="./static/images/results/enhanced.png" alt="Enhanced">
-                <p>Our Enhanced Method</p>
-            </div>
-        </div>
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Results</h2>
+    <hr>
+    <p class="content has-text-justified">
+      We showcase the final result of our pipeline, demonstrating realistic 3D scene construction, consistent geometry across views, and dynamic object fidelity enabled by layered depth inpainting and 3D Gaussian reconstruction.
+    </p>
+
+    <div class="video-container has-text-centered" style="margin-top: 2rem; margin-bottom: 2rem;">
+      <video width="100%" controls autoplay muted loop>
+        <source src="./static/images/output_reverse_rc1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <figcaption class="has-text-centered mt-2">Rendered output from our full pipeline</figcaption>
     </div>
+
+    <p class="content has-text-justified">
+      Our approach enables efficient and interactive scene generation from a single image, with real-time rendering capabilities and high visual realism. The integration of geometry-aware depth estimation, inpainting, and object reconstruction results in immersive and explorable 3D outputs.
+    
+    </p>
+    <p>While we leveraged MVDream for multi-view generation, its limitations in handling certain object classes affected reconstruction quality. Due to resource constraints particularly GPU memory, with WonderWorld alone requiring over 38 GB we were unable to experiment with alternative diffusion based models like DiT. Additionally, each invocation of LGM for object level reconstruction added substantial overhead. Despite these constraints, our results demonstrate improved spatial completeness and realism. Future efforts will focus on optimizing memory usage and exploring stronger multi-view priors.</p>
+  </div>
 </section>
 
 <!-- 5. Ablations -->
 <section class="section">
-    <div class="container is-max-desktop">
-        <h2 class="title is-3 has-text-centered">Ablations</h2>
-        <hr>
-        <p class="content has-text-justified">
-          To validate each component's contribution, we ablated the use of LGM and Gaussian splatting separately.
-        </p>
-        <div class="grid-container">
-            <div class="grid-item">
-                <img src="./static/images/ablations/without_lgm.png" alt="Without LGM">
-                <p>Without LGM</p>
-            </div>
-            <div class="grid-item">
-                <img src="./static/images/ablations/without_gaussian.png" alt="Without Gaussian">
-                <p>Without Gaussian</p>
-            </div>
-        </div>
-    </div>
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Future Work</h2>
+    <hr>
+    <p class="content has-text-justified">
+      To improve our scene generation pipeline, we propose the following directions:
+    </p>
+    <ul class="content has-text-justified" style="margin-left: 1rem;">
+      <li>
+        <strong>Further Parallelization:</strong> We plan to increase parallelization of the scene generation processes to reduce the current processing time, which is about one minute per scene. This should allow for faster data generation and better scalability.
+      </li>
+      <li>
+        <strong>Alternative Multi-View Generation Models:</strong> We intend to experiment with other models for multi-view generation, such as DiT. Our current use of MVDream does not perform well for some objects, and a different model may produce better results.
+      </li>
+    </ul>
+  </div>
 </section>
 
-<!-- 6. Downloads / Code -->
-<section class="section">
-    <div class="container is-max-desktop">
-        <h2 class="title is-3 has-text-centered">Downloads / Code</h2>
-        <hr>
-        <p class="content has-text-justified">
-          <a href="https://github.com/yourrepo">View GitHub Repository</a>
-          <br>
-          Main script: <code>run_pipeline.py</code>
-        </p>
-    </div>
-</section>
 
-<!-- 7. References -->
+
 <!-- 7. References -->
 <section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">References</h2>
     <hr>
-
     <p class="content has-text-justified">
+      • Kerbl et al., 2023. <a href="https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/" target="_blank">3D Gaussian Splatting for Real-Time Radiance Field Rendering</a><br>
+      • Zhou et al., 2023. <a href="https://arxiv.org/abs/2308.04309" target="_blank">Marigold: Diffusion-Based Multi-View Depth Estimation</a><br>
+      • Suvorov et al., 2022. <a href="https://github.com/advimman/lama" target="_blank">LaMa: Resolution-robust Large Mask Inpainting with Fourier Convolutions</a><br>
+      • Rombach et al., 2022. <a href="https://github.com/CompVis/stable-diffusion" target="_blank">High-Resolution Image Synthesis with Latent Diffusion Models</a><br>
+      • Zitnick et al., 2004. <a href="https://www.microsoft.com/en-us/research/publication/high-quality-video-view-interpolation-using-a-layered-representation/" target="_blank">High-Quality Video View Interpolation Using a Layered Representation</a><br>
+      • Zhou et al., 2018. <a href="https://augmentedperception.github.io/deepview/" target="_blank">Stereo Magnification: Learning View Synthesis using Multiplane Images</a><br>
+      • Tucker & Snavely, 2020. <a href="https://augmentedperception.github.io/deepview/" target="_blank">Single-View View Synthesis with Multiplane Images</a><br>
+      • Mildenhall et al., 2020. <a href="https://arxiv.org/abs/2003.08934" target="_blank">NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis</a><br>
+      • Aliev et al., 2020. <a href="https://arxiv.org/abs/1906.08240" target="_blank">Neural Point-Based Graphics</a><br>
+      • Lin et al., 2021. <a href="https://infinite-nature.github.io/" target="_blank">Infinite Nature: Perpetual View Generation of Natural Scenes from a Single Image</a><br>
+      • Zhao et al., 2023. <a href="https://arxiv.org/html/2401.17053v2" target="_blank">BlockFusion: Compositional Scene Generation with Score-based Diffusion</a><br>
+      • Yang et al., 2023. <a href="https://scenescape.github.io/" target="_blank">SceneScape: Object-Centric Indoor Scene Generation from a Single Image</a><br>
+      • Chen et al., 2024. <a href="https://kovenyu.com/wonderjourney/" target="_blank">WonderJourney: Guided Scene Synthesis with LLMs</a><br>
+      • Liu et al., 2023. <a href="https://eckertzhang.github.io/Text2NeRF.github.io/" target="_blank">Text2NeRF: Text-Driven View Synthesis with NeRF</a><br>
+      • Yang et al., 2023. <a href="https://luciddreamer-cvlab.github.io/" target="_blank">LucidDreamer: Text-to-3D Generation with 3D Consistency</a><br>
+      • Xie et al., 2023. <a href="https://realmdreamer.github.io/" target="_blank">RealmDreamer: A World Model for Long-Horizon Open-World Exploration</a><br>
       • <a href="https://kovenyu.com/wonderworld/" target="_blank">WonderWorld: Interactive 3D Scene Generation from a Single Image</a><br>
-      • <a href="https://me.kiui.moe/lgm/" target="_blank">LGM: Large Multi-View Gaussian Model for High-Resolution 3D Content Creation</a><br>
       • <a href="https://image-dream.github.io/" target="_blank">ImageDream: Image-Prompt Multi-view Diffusion for 3D Generation</a>
     </p>
-
   </div>
 </section>
-
-<!-- 8. Team -->
-<section class="section">
-    <div class="container is-max-desktop">
-        <h2 class="title is-3 has-text-centered">Team</h2>
-        <hr>
-        <p class="content has-text-justified">
-          <strong>Tanisha Gupta</strong><br>
-          <strong>Lamia Alsalloom</strong><br>
-          <strong>Saba Abdulaziz</strong><br>
-
-
-        </p>
-    </div>
-</section>
-
 <footer class="footer has-text-centered">
     <p>Website adapted from <a href="https://mingukkang.github.io/Diffusion2GAN/">Diffusion2GAN</a></p>
 </footer>
